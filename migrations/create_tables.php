@@ -8,8 +8,6 @@ require_once 'get_db_connection.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
 use AppServices\database\CapsuleManager;
-use AppServices\utils\UserUtility;
-use AppServices\utils\VerificationUtility;
 use Illuminate\Database\Schema\Blueprint;
 
 $capsule = CapsuleManager::GetCapsule();
