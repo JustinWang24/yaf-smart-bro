@@ -1,0 +1,6 @@
+/vendor
+.idea
+.vscode
+conf/application.ini
+migrations/get_db_connection.php
+

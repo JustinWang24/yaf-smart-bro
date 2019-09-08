@@ -1,0 +1,16 @@
+[common]
+application.directory = APPLICATION_PATH  "/application"
+application.dispatcher.catchException = TRUE
+
+application.owner.name.sms = "Your Company"
+application.current_version = "1.0"
+
+[dev : common]
+application.db.driver = "mysql"
+application.db.host = "127.0.0.1"
+application.db.database = "your_database"
+application.db.username = "user"
+application.db.password = "pwd"
+application.db.charset = "utf8mb4"
+application.db.collation = "utf8mb4_unicode_ci"
+application.db.prefix = ""
