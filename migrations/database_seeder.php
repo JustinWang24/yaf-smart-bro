@@ -19,6 +19,9 @@ $user = factory(
     function(Faker $faker) {
         return [
             'name'=>$faker->name,
+            'uuid'=>'1',
+            'email'=> $faker->email,
+            'password'=> '12123m'
         ];
     }
 );
