@@ -15,7 +15,6 @@
   ],
   "require": {
     "illuminate/database": "^5.8",
-    "illuminate/events": "^5.8",
     "nesbot/carbon": "^2.23",
     "ramsey/uuid": "^3.8",
     "guzzlehttp/guzzle": "~6.0"

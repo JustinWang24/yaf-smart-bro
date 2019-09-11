@@ -5,7 +5,6 @@
  * @desc 默认控制器
  * @see http://www.php.net/manual/en/class.yaf-controller-abstract.php
  */
-use AppModels\User;
 use AppServices\requests\RequestFactory;
 use AppServices\response\ResponseFactory;
 

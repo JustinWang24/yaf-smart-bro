@@ -1,8 +1,14 @@
 <?php
 /**
- * 在 Yaf 框架被加载之后可以获取配置项的方法
+ * 可到处直接使用的帮助方法
  */
 if(!function_exists('yaf_config')){
+    /**
+     * 在 Yaf 框架被加载之后可以获取配置项的方法
+     *
+     * @param $configFullName: 配置项的全名
+     * @return mixed
+     */
     function yaf_config($configFullName){
         $v = Yaf_Registry::get('config');
         $arr = explode('.', $configFullName);
@@ -13,20 +19,25 @@ if(!function_exists('yaf_config')){
     }
 }
 
-
-/**
- * 在 Yaf 框架被加载之后可以获取 URI 配置项的快捷方法
- */
 if(!function_exists('yaf_config_uri')){
+    /**
+     * 在 Yaf 框架被加载之后可以获取 URI 配置项的快捷方法
+     *
+     * @param $name
+     * @return mixed
+     */
     function yaf_config_uri($name){
         return yaf_config('application.uris.'.$name);
     }
 }
 
-/**
- * 生成随机字符串的方法
- */
 if(!function_exists('random_string')){
+    /**
+     * 生成随机字符串的方法
+     *
+     * @param int $length
+     * @return string
+     */
     function random_string($length = 10) {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charactersLength = strlen($characters);
