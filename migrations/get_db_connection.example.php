@@ -4,6 +4,7 @@
  * 获取数据链接, 请根据自己的实际配置, 进行适当的修改, 然后生成一个本地的 get_db_connection.php 文件即可
  */
 
+require __DIR__.'/../vendor/autoload.php';
 use AppServices\database\CapsuleManager;
 
 $config = null;
