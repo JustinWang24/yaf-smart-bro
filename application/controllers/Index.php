@@ -27,11 +27,11 @@ class IndexController extends Yaf_Controller_Abstract {
      * @return bool
      */
 	public function exampleAction(){
-	    $request = RequestFactory::GetLoginRequest($this->getRequest());
+        $request = RequestFactory::GetLoginRequest($this->getRequest());
 
 	    $response = ResponseFactory::GetInstance($request->getType());
-
 	    echo $response->toJson();
 	    return false;
     }
+
 }

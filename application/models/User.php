@@ -15,7 +15,7 @@ class User extends Model
 {
     use SoftDeletes;
     protected $fillable = [
-        'uuid','mobile','password','status','mobile_verified_at','type'
+        'uuid','mobile','password','status','mobile_verified_at','type','email','name'
     ];
 
     /**
