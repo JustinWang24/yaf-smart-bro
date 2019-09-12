@@ -11,7 +11,7 @@ namespace AppServices\requests;
 
 class LogoutRequest extends BasicRequest
 {
-    public function __construct(\Yaf_Request_Abstract $request, $type)
+    public function __construct(\Yaf_Request_Http $request, $type)
     {
         parent::__construct($request, $type);
     }
