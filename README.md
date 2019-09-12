@@ -26,3 +26,25 @@ php73 ./vendor/bin/phpunit --filter=your_test_case
 - Production 环境 `php migrations/create_tables.php`
 ### 创建Mock 数据
 - 仅限本地或测试环境操作 `php migrations/database_seeder.php dev`
+
+## 目录结构
+project  应用部署目录
+├─application           应用目录
+│  ├─controllers        控制器目录
+│  ├─helpers            公共帮助方法目录
+│  ├─library            yaf本地类库目录
+│  ├─models             模型目录
+│  ├─plugins            插件目录
+│  ├─services           自己创建类库目录
+│  ├─views              视图目录
+│  ├─Bootstrap.php      yaf引导程序 yaf全局配置入口
+├─config                yaf的配置文件
+├─migrations            数据库生成文件
+├─public                WEB 部署目录（对外访问目录）
+│  ├─index.php          应用入口文件
+├─tests                 测试目录
+├─vendor                第三方类库目录（Composer）
+├─.htaccess             用于 apache 的重写
+├─composer.json         composer 定义文件
+├─phpunit.xml           单元测试配置文件
+├─README.md             README 文件
