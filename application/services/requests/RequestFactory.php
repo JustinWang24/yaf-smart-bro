@@ -13,19 +13,19 @@ class RequestFactory
 
     /**
      * 获取 Login 的请求
-     * @param \Yaf_Request_Abstract $request
+     * @param \Yaf_Request_Http $request
      * @return LoginRequest
      */
-    public static function GetLoginRequest(\Yaf_Request_Abstract $request){
+    public static function GetLoginRequest(\Yaf_Request_Http $request){
         return new LoginRequest($request, self::V1_TYPE_LOGIN);
     }
 
     /**
      * 获取 Logout 的请求
-     * @param \Yaf_Request_Abstract $request
+     * @param \Yaf_Request_Http $request
      * @return LogoutRequest
      */
-    public static function GetLogoutRequest(\Yaf_Request_Abstract $request){
+    public static function GetLogoutRequest(\Yaf_Request_Http $request){
         return new LogoutRequest($request, self::V1_TYPE_LOGOUT);
     }
 }
