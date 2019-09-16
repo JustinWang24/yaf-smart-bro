@@ -6,6 +6,15 @@
 
 class RequestSanitizerPlugin extends Yaf_Plugin_Abstract
 {
+    public function routerStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+    }
+
+    public function routerShutdown(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+    }
+
+    public function dispatchLoopStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
+    }
+
     /**
      * 在 request 数据转发到控制器之前, 进行数据的过滤工作. 防止注入攻击
      * @param Yaf_Request_Abstract $request
@@ -19,22 +28,6 @@ class RequestSanitizerPlugin extends Yaf_Plugin_Abstract
             $v = trim($v);  // 去除字符串的左右侧的空格
             $request->setParam($key, $v);
         }
-    }
-
-    /**
-     * @param $str
-     */
-    private function escape($str){
-
-    }
-
-    public function routerStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
-    }
-
-    public function routerShutdown(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
-    }
-
-    public function dispatchLoopStartup(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
     }
 
     public function postDispatch(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {

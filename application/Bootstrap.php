@@ -17,9 +17,14 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
 		Yaf_Registry::set('config', $arrConfig);
 	}
 
-	public function _initPlugin(Yaf_Dispatcher $dispatcher) {
+    /**
+     * 自定义的 init 方法, 专门用来初始化数据库链接. 它会在 _initConfig 之后被调用
+     */
+	public function _initDatabaseConnection(){
         CapsuleManager::Init();
+    }
 
+	public function _initPlugin(Yaf_Dispatcher $dispatcher) {
 		//注册一个插件
 //		$objSamplePlugin = new SamplePlugin();
 		$requestSanitizer = new RequestSanitizerPlugin();
