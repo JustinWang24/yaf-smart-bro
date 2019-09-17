@@ -6,7 +6,7 @@
  * Time: 4:44 PM
  */
 
-namespace AppServices\response;
+namespace AppServices\responses;
 
 use AppServices\requests\RequestFactory;
 
@@ -20,6 +20,7 @@ class ResponseFactory
      * @return BasicResponse
      */
     public static function GetInstance($requestType, $code = null, $message = ''){
+
         /**
          * @var BasicResponse $instance
          */
@@ -32,6 +33,9 @@ class ResponseFactory
             case RequestFactory::V1_TYPE_LOGOUT:
                 $instance = new LogoutResponse($code, $message);
                 break;
+            case RequestFactory::V1_TYPE_CLOUD_BAN_CARD:
+                $instance = new CloudBanCardResponse($code, $message);
+                break;    
             default:
                 break;
         }
