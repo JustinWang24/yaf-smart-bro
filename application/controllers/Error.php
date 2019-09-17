@@ -23,6 +23,24 @@ class ErrorController extends Yaf_Controller_Abstract {
                 // Log exception locally
                 break;
         }
+
+        // Log Exception to file
+        SeasLog::log(
+            $this->_getLogLevel($exception->getCode()),
+            $exception->getMessage()
+        );
+
         return false;
 	}
+
+    /**
+     * 根据传入的异常的 code, 获取应该被 log 的级别
+     *
+     * @param $code
+     * @return string
+     */
+	private function _getLogLevel($code){
+
+	    return SEASLOG_INFO;
+    }
 }
