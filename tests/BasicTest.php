@@ -7,7 +7,6 @@ require_once __DIR__.'/../vendor/autoload.php';
 use PHPUnit\Framework\TestCase;
 use AppServices\database\CapsuleManager;
 use GuzzleHttp\Client;
-use AppServices\requests\RequestFactory;
 
 class BasicTest extends TestCase
 {
@@ -67,13 +66,33 @@ class BasicTest extends TestCase
         ]);
     }
 
-    public function _getMockRequest($uri, $data = []){
+    /**
+     * @param $uri
+     * @param array $data
+     * @param $type
+     * @return Yaf_Request_Http
+     */
+    public function _getMockRequest($uri, $data = [], $type){
         $req = new Yaf_Request_Http($uri, 'http://auth.xipeng.test');
         foreach ($data as $k => $v) {
             $req->setParam($k,$v);
         }
-        $req->setParam('user','1000001');
-        $req->setParam('type',RequestFactory::V3_TYPE_VERIFICATION_CODE);
+        $req->setParam('type',$type);
         return $req;
+    }
+
+    /**
+     * @param $params
+     * @param $action
+     * @param $controller
+     * @param string $module
+     * @return Yaf_Request_Simple
+     */
+    public function _getMockSimpleRequest($params, $action, $controller, $module = 'Index'){
+        try{
+            return new Yaf_Request_Simple(
+                "CLI", $module, $controller, $action, $params);
+        }catch (Exception $exception){
+        }
     }
 }

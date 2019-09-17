@@ -5,4 +5,7 @@ require APPLICATION_PATH . '/vendor/autoload.php';
 $application = new Yaf_Application( APPLICATION_PATH . "/conf/application.ini");
 
 $application->bootstrap()->run();
+
+// For CLI
+//$application->getDispatcher()->dispatch(new Yaf_Request_Simple());
 ?>

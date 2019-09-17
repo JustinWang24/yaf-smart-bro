@@ -15,7 +15,7 @@ if(!function_exists('yaf_config')){
         foreach ($arr as $section) {
             $v = $v->get($section);
         }
-        return $v;
+        return empty($v) ? null : $v;
     }
 }
 
