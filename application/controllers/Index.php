@@ -18,19 +18,15 @@ class IndexController extends Yaf_Controller_Abstract {
         echo 'Auth module: v'
             . yaf_config('application.current_version')
             . ', created by Justin Wang. Env: '.YAF_ENVIRON;
-        return false;
 	}
 
     /**
      * 简单的参考样例
-     * @return bool
      */
 	public function exampleAction(){
         $request = RequestFactory::GetLoginRequest($this->getRequest());
 
 	    $response = ResponseFactory::GetInstance($request->getType());
 	    echo $response->toJson();
-	    return false;
     }
-
 }

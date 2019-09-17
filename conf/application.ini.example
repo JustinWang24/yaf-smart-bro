@@ -2,15 +2,41 @@
 application.directory = APPLICATION_PATH  "/application"
 application.dispatcher.catchException = TRUE
 
-application.owner.name.sms = "Your Company"
-application.current_version = "1.0"
+application.owner.name.sms = "北京帕菲特"
+application.current_version = "3.0"
+application.uris.login = GLOBAL_URI_PREFIX "user/login"
+application.uris.logout = GLOBAL_URI_PREFIX "user/logout"
+application.uris.register = GLOBAL_URI_PREFIX "user/reg"
+application.uris.updateUserMobileInfo = GLOBAL_URI_PREFIX "user/updateUserMobileInfo"
+application.uris.getVerificationCode = GLOBAL_URI_PREFIX "user/getVerificationCode"
+application.uris.findUserPasswordInfo = GLOBAL_URI_PREFIX "user/findUserPasswordInfo"
 
 [dev : common]
 application.db.driver = "mysql"
 application.db.host = "127.0.0.1"
-application.db.database = "your_database"
-application.db.username = "user"
-application.db.password = "pwd"
+application.db.database = "purfect_auth"
+application.db.username = "homestead"
+application.db.password = "secret"
 application.db.charset = "utf8mb4"
 application.db.collation = "utf8mb4_unicode_ci"
 application.db.prefix = ""
+
+# Redis 的配置开始
+# Redis 的驱动: phpredis 扩展, 其他的驱动请自行实现
+application.redis.driver = "PhpRedis"
+# 默认的本地 Redis 服务器连接配置
+application.redis.default.host = "127.0.0.1"
+application.redis.default.password = ""
+application.redis.default.port = "6379"
+application.redis.default.database = "0"
+# 远程的 Redis 服务器连接配置
+application.redis.remote.host = "127.0.0.1"
+application.redis.remote.password = ""
+application.redis.remote.port = "6379"
+application.redis.remote.database = "0"
+
+application.callback.verification_code = "http://auth.xipeng.test/api/user/sms-sent"
+application.callback.push_complete = "http://auth.xipeng.test/api/user/push-complete"
+
+application.services.sms.center = "http://sms.xipeng.test/api/send-sms"
+application.services.app.push.center = "http://apppush.xipeng.test/api/push-message"
