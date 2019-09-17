@@ -5,7 +5,7 @@
  * Date: 3/9/19
  * Time: 3:35 PM
  */
-namespace AppServices\response;
+namespace AppServices\responses;
 
 abstract class BasicResponse
 {
@@ -29,7 +29,7 @@ abstract class BasicResponse
      * @return string
      */
     public function toJson(){
-        return json_encode($this->toArray());
+        return json_encode($this->toArray(), JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
     }
 
     public function setCode($code){

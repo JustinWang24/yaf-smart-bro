@@ -86,6 +86,17 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
             );
             $router->addRoute('user_findUserPasswordInfo',$route6);
 
+            // 云班牌 学校
+            $route8 = new Yaf_Route_Rewrite(
+                $apiRoutesPrefix.'cloud/getSchoolInfo',
+                [
+                    'controller' => 'CloudBanCard',
+                    'action'     => 'getSchoolInfo'
+                ]
+            );
+            $router->addRoute('cloud_getSchoolInfo', $route8);
+
+
             // AB 测试的一个路由
             if(YAF_ENVIRON === 'dev'){
                 $route7 = new Yaf_Route_Rewrite(

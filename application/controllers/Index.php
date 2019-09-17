@@ -7,6 +7,7 @@
  */
 use AppServices\requests\RequestFactory;
 use AppServices\response\ResponseFactory;
+use AppServices\utils\UserUtility;
 
 class IndexController extends Yaf_Controller_Abstract {
 	/** 
@@ -33,4 +34,18 @@ class IndexController extends Yaf_Controller_Abstract {
 	    return false;
     }
 
+    
+    public function tokenAction()
+    {
+
+        $userInfo = UserUtility::checkToken('1tF9XUBAQEAyk6m/1ZiiItNqtgI5KpuiKuigTOkg0VJoidzMwL7nGJIM9t1y');
+
+        dump($userInfo);die;
+        // $aes = Aes::create(yaf_config('application.token.aes.key'));  
+        // $aa  = $aes->AESEncryptCtr( '1233234234' );
+        // dump($aa);die;
+        return false;
+    }
+
+  
 }
