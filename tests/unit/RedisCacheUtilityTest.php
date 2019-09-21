@@ -36,6 +36,32 @@ class RedisCacheUtilityTest extends BasicTest
         $this->cacheUtil = CacheUtilityFactory::getInstance($redisManager);
     }
 
+    public function testCanNotGetDataIfExpired(){
+        $sessionId = 'the-session-id-'.time();
+        $uri = '/api/test-api';
+        $data = [
+            'name'=>'someone',
+            'age'=>47,
+            'school'=>[
+                'name'=>'test',
+                'type'=>'uni'
+            ]
+        ];
+        // 测试可以创建一个新的
+        $result =  $this->cacheUtil->create(
+            $sessionId,
+            $uri,
+            $data,
+            2
+        );
+        $this->assertEquals(1, $result);
+
+        sleep(4);
+        // 这个时候, 数据应该已经过期了
+        $result = $this->cacheUtil->get($sessionId, $uri);
+        $this->assertNull($result);
+    }
+
     public function testCanInteractWithRedis(){
         $sessionId = 'the-session-id-'.time();
         $uri = '/api/test-api';

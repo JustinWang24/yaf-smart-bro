@@ -1,6 +1,6 @@
 <?php
 /**
- * 获取和保存缓存中数据的工具接口
+ * 获取和保存缓存中数据的工具接口 DAO
  */
 namespace AppServices\utils\contracts;
 
@@ -24,10 +24,10 @@ interface ICacheUtility
      * @param $sessionId
      * @param $uri
      * @param $jsonString
-     * @param $expiredAt
+     * @param int $expiredIn: 在多少秒之后过期
      * @return int
      */
-    public function update($sessionId, $uri, $jsonString, $expiredAt);
+    public function update($sessionId, $uri, $jsonString, $expiredIn=0);
 
     /**
      * 以 session id 和 uri 作为 key, 创建一条新的记录
@@ -35,10 +35,10 @@ interface ICacheUtility
      * @param $sessionId
      * @param $uri
      * @param $jsonString
-     * @param $expiredAt
+     * @param int $expiredIn
      * @return int
      */
-    public function create($sessionId, $uri, $jsonString, $expiredAt);
+    public function create($sessionId, $uri, $jsonString, $expiredIn = 0);
 
     /**
      * 删除 session id 和 uri 指定的值
@@ -48,4 +48,14 @@ interface ICacheUtility
      * @return void
      */
     public function delete($sessionId, $uri);
+
+    /**
+     * 重置 session id 和 uri 指定的过期时间在 $expiredIn 秒之后
+     *
+     * @param $sessionId
+     * @param $uri
+     * @param int $expiredIn
+     * @return void
+     */
+    public function expire($sessionId, $uri, $expiredIn);
 }

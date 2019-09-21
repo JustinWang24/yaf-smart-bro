@@ -61,10 +61,10 @@ class RedisCacheUtility implements ICacheUtility
      * @param $sessionId
      * @param $uri
      * @param $jsonString
-     * @param $expiredAt
+     * @param $expiredIn
      * @return int
      */
-    public function update($sessionId, $uri, $jsonString, $expiredAt)
+    public function update($sessionId, $uri, $jsonString, $expiredIn = 0)
     {
         $realKey = $this->_buildKey($sessionId, $uri);   // 构建保存的数据的 key
         $data = CacheUtilityFactory::createDataItemForSave($jsonString);    // 构建需要保存的数据
@@ -81,6 +81,7 @@ class RedisCacheUtility implements ICacheUtility
                 // 不需要更新
                 $result = 1;
             }
+            $this->_setExpire($realKey, $expiredIn);
         }
         else{
             // 不存在, 创建新的
@@ -89,16 +90,38 @@ class RedisCacheUtility implements ICacheUtility
         return $result;
     }
 
-    public function create($sessionId, $uri, $jsonString, $expiredAt)
+    /**
+     * @param $sessionId
+     * @param $uri
+     * @param $jsonString
+     * @param int $expiredIn : 秒数, 在多少秒之后过期, 如果是 0, 表示不过期
+     * @return int
+     */
+    public function create($sessionId, $uri, $jsonString, $expiredIn = 0)
     {
         $realKey = $this->_buildKey($sessionId, $uri);   // 构建保存的数据的 key
         $data = CacheUtilityFactory::createDataItemForSave($jsonString);    // 构建需要保存的数据
-        return $this->redisManager->connection()->hmset($realKey, $data);;
+        $created = $this->redisManager->connection()->hmset($realKey, $data);
+        if($created && $expiredIn){
+            // 创建成功了, 设置过期的时间
+            $this->_setExpire($realKey, $expiredIn);
+        }
+        return $created;
     }
 
     public function delete($sessionId, $uri)
     {
         $realKey = $this->_buildKey($sessionId, $uri);   // 构建保存的数据的 key
         $this->redisManager->connection()->command('hdel',[$realKey,'md','data']);
+    }
+
+    public function expire($sessionId, $uri, $expiredIn)
+    {
+        $this->_setExpire($this->_buildKey($sessionId, $uri), $expiredIn);
+    }
+
+
+    private function _setExpire($key, $expiredIn){
+        $this->redisManager->connection()->command('expire',[$key, $expiredIn]);
     }
 }
