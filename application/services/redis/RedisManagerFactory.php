@@ -7,10 +7,11 @@
  */
 
 namespace AppServices\redis;
+use AppServices\redis\contracts\IRedisManager;
 use AppServices\redis\impl\phpredis\RedisManager;
 use AppServices\redis\contracts\IRedisConnector;
 
-class RedisClientFactory
+class RedisManagerFactory
 {
     private static $instance = null;
 
@@ -19,9 +20,9 @@ class RedisClientFactory
      *
      * @param string $driver
      * @param null $config
-     * @return RedisManager|null
+     * @return IRedisManager|null
      */
-    public static function createInstance($driver = IRedisConnector::DRIVER_PHP_REDIS, $config = null){
+    public static function getInstance($driver = IRedisConnector::DRIVER_PHP_REDIS, $config = null){
         if(empty($config)){
             $location = yaf_config('application.redis.location');
             $config = [

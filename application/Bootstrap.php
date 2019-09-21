@@ -28,7 +28,10 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
 		//注册一个插件
 //		$objSamplePlugin = new SamplePlugin();
 		$requestSanitizer = new RequestSanitizerPlugin();
+		$cacheActionInterceptor = new CheckAnyActionsNeedToBeCachedPlugin();
+
 		$dispatcher->registerPlugin($requestSanitizer);
+		$dispatcher->registerPlugin($cacheActionInterceptor);
 	}
 
 	public function _initRoute(Yaf_Dispatcher $dispatcher) {
@@ -54,53 +57,15 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
             );
             $router->addRoute('user_logout',$route2);
 
-            // 用户修改手机号码
+            // 测试缓存的接口
             $route3 = new Yaf_Route_Rewrite(
-                $apiRoutesPrefix.'user/updateUserMobileInfo',
+                $apiRoutesPrefix.'cached-action',
                 [
-                    'controller'=>'mobile'
+                    'controller'=>'index',
+                    'action'=>'cached',
                 ]
             );
-            $router->addRoute('user_updateUserMobileInfo',$route3);
-
-            // 申请向指定的手机发送验证码
-            $route4 = new Yaf_Route_Rewrite(
-                $apiRoutesPrefix.'user/getVerificationCode',
-                [
-                    'controller'=>'verification'
-                ]
-            );
-            $router->addRoute('user_getVerificationCode',$route4);
-
-            // 短信发送服务器的回调处理路由
-            $route5 = new Yaf_Route_Rewrite(
-                $apiRoutesPrefix.'user/sms-sent',
-                [
-                    'controller'=>'verification',
-                    'action'=>'callback'
-                ]
-            );
-            $router->addRoute('user_sms_sent',$route5);
-
-            // 修改用户密码的路由
-            $route6 = new Yaf_Route_Rewrite(
-                $apiRoutesPrefix.'user/findUserPasswordInfo',
-                [
-                    'controller'=>'password',
-                ]
-            );
-            $router->addRoute('user_findUserPasswordInfo',$route6);
-
-            // 云班牌 学校
-            $route8 = new Yaf_Route_Rewrite(
-                $apiRoutesPrefix.'cloud/getSchoolInfo',
-                [
-                    'controller' => 'CloudBanCard',
-                    'action'     => 'getSchoolInfo'
-                ]
-            );
-            $router->addRoute('cloud_getSchoolInfo', $route8);
-
+            $router->addRoute('cached-action',$route3);
 
             // AB 测试的一个路由
             if(YAF_ENVIRON === 'dev'){
