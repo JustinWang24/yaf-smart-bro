@@ -6,8 +6,8 @@
  * @see http://www.php.net/manual/en/class.yaf-controller-abstract.php
  */
 use AppServices\requests\RequestFactory;
-use AppServices\response\ResponseFactory;
 use AppServices\utils\UserUtility;
+use AppServices\responses\ResponseFactory;
 
 class IndexController extends Yaf_Controller_Abstract {
 	/** 

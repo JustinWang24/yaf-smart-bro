@@ -13,13 +13,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Model
 {
-    // use SoftDeletes;
-    // protected $fillable = [
-    //     'uuid','mobile','password','status','mobile_verified_at','type','email','name'
-    // ];
-    protected $table = 't_api_user';
-
-    protected $primaryKey = 'userid';
+    use SoftDeletes;
+    protected $fillable = [
+        'uuid','mobile','password','status','mobile_verified_at','type','email','name','remember_token'
+    ];
     
     /**
      * 根据 Uuid 获取用户的数据, 如果提供了 $rememberToken 则必须相等
@@ -63,4 +60,12 @@ class User extends Model
         return null;
     }
 
+    /**
+     * 获取 Remember Token
+     *
+     * @return string
+     */
+    public function getRememberToken(){
+        return $this->remember_token;
+    }
 }
