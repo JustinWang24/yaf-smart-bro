@@ -4,8 +4,6 @@
  */
 namespace AppServices\utils;
 
-use AppModels\User;
-
 class UserUtility
 {   
    
@@ -32,21 +30,4 @@ class UserUtility
     public static function VerifyPassword($passwordInPlainText, $hash){
         return password_verify($passwordInPlainText,$hash);
     }
-
-
-    /**
-     *根据用户Token 返回用户信息(旧版)
-     *不包含旧版权限逻辑,仅验证token
-     */
-    public static function checkToken($token)
-    {
-        $decoder = new ParseToken($token);
-        if($decoder->isGood()) {
-            return $decoder->getUserInfo();
-        } else {
-            return $decoder->getErrorCode();
-        }
-    }
-
-
 }

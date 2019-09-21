@@ -7,8 +7,9 @@ namespace AppServices\redis\impl\phpredis;
 
 use AppServices\redis\contracts\IRedisConnection;
 use AppServices\redis\contracts\IRedisConnector;
+use AppServices\redis\contracts\IRedisManager;
 
-class RedisManager
+class RedisManager implements IRedisManager
 {
     /**
      * The name of the default driver.

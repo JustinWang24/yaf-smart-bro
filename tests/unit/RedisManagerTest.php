@@ -5,15 +5,15 @@
 require_once __DIR__.'/../BasicTest.php'; // 手工导入
 
 use AppServices\redis\contracts\IRedisConnector;
-use AppServices\redis\RedisClientFactory;
-use AppServices\redis\impl\phpredis\RedisManager;
+use AppServices\redis\RedisManagerFactory;
+use AppServices\redis\contracts\IRedisManager;
 
 class RedisManagerTest extends BasicTest
 {
     private $redisConfig;
 
     /**
-     * @var RedisManager $redisManager
+     * @var IRedisManager $redisManager
      */
     private $redisManager;
 
@@ -29,7 +29,7 @@ class RedisManagerTest extends BasicTest
             'database' => 0,
         ];
 
-        $this->redisManager = RedisClientFactory::createInstance(
+        $this->redisManager = RedisManagerFactory::getInstance(
             IRedisConnector::DRIVER_PHP_REDIS, $this->redisConfig
         );
     }
