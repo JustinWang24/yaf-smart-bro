@@ -2,7 +2,6 @@
 /**
  * cache 的增删查改
  */
-
 namespace AppServices\utils\impl;
 use AppServices\utils\CacheUtilityFactory;
 use AppServices\utils\contracts\ICacheUtility;
@@ -109,18 +108,33 @@ class RedisCacheUtility implements ICacheUtility
         return $created;
     }
 
+    /**
+     * 删除 $sessionId, $uri 指定的 Hash 记录
+     * @param $sessionId
+     * @param $uri
+     */
     public function delete($sessionId, $uri)
     {
         $realKey = $this->_buildKey($sessionId, $uri);   // 构建保存的数据的 key
         $this->redisManager->connection()->command('hdel',[$realKey,'md','data']);
     }
 
+    /**
+     * 更新 $sessionId, $uri 指定的 Hash 的过期时间
+     * @param $sessionId
+     * @param $uri
+     * @param int $expiredIn
+     */
     public function expire($sessionId, $uri, $expiredIn)
     {
         $this->_setExpire($this->_buildKey($sessionId, $uri), $expiredIn);
     }
 
-
+    /**
+     * 执行 Redis 的设置过期时间命令
+     * @param $key
+     * @param $expiredIn
+     */
     private function _setExpire($key, $expiredIn){
         $this->redisManager->connection()->command('expire',[$key, $expiredIn]);
     }

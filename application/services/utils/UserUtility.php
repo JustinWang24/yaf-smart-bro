@@ -6,8 +6,6 @@ namespace AppServices\utils;
 
 class UserUtility
 {   
-   
-
     /**
      * 对密码进行加密后返回
      * @param string $passwordInPlainText

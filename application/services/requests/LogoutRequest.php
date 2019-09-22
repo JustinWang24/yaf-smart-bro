@@ -1,13 +1,8 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: justinwang
- * Date: 4/9/19
- * Time: 2:56 PM
+ * Logout 它和响应类
  */
-
 namespace AppServices\requests;
-
 
 class LogoutRequest extends BasicRequest
 {

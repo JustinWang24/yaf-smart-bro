@@ -5,7 +5,7 @@
  * Date: 3/9/19
  * Time: 4:38 PM
  */
-namespace AppServices\response;
+namespace AppServices\responses;
 
 class LoginResponse extends BasicResponse
 {

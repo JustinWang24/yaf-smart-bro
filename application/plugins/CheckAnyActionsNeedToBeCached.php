@@ -1,11 +1,7 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: justinwang
- * Date: 17/9/19
- * Time: 7:26 PM
+ * 处理缓存的中间件
  */
-
 use AppServices\utils\CacheUtilityFactory;
 
 class CheckAnyActionsNeedToBeCachedPlugin extends Yaf_Plugin_Abstract

@@ -2,7 +2,7 @@
 application.directory = APPLICATION_PATH  "/application"
 application.dispatcher.catchException = TRUE
 
-application.owner.name.sms = "北京帕菲特"
+application.owner.name.sms = "Your Company Name"
 application.current_version = "3.0"
 application.uris.login = GLOBAL_URI_PREFIX "user/login"
 application.uris.logout = GLOBAL_URI_PREFIX "user/logout"
@@ -14,7 +14,7 @@ application.uris.findUserPasswordInfo = GLOBAL_URI_PREFIX "user/findUserPassword
 [dev : common]
 application.db.driver = "mysql"
 application.db.host = "127.0.0.1"
-application.db.database = "purfect_auth"
+application.db.database = "your_database"
 application.db.username = "homestead"
 application.db.password = "secret"
 application.db.charset = "utf8mb4"
@@ -24,6 +24,8 @@ application.db.prefix = ""
 # Redis 的配置开始
 # Redis 的驱动: phpredis 扩展, 其他的驱动请自行实现
 application.redis.driver = "PhpRedis"
+# 需要使用哪个连接配置: default or remote
+application.redis.location = "default"
 # 默认的本地 Redis 服务器连接配置
 application.redis.default.host = "127.0.0.1"
 application.redis.default.password = ""

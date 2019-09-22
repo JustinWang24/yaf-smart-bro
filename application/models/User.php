@@ -1,13 +1,9 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: justinwang
- * Date: 31/8/19
- * Time: 12:25 AM
+ * 用户模型类
  */
 namespace AppModels;
 
-use AppServices\utils\UserUtility;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

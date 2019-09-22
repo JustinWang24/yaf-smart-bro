@@ -33,7 +33,9 @@ class RedisManagerFactory
             ];
         }
         if($driver === IRedisConnector::DRIVER_PHP_REDIS){
-            self::$instance = new RedisManager($driver,$config);
+            if(!self::$instance){
+                self::$instance = new RedisManager($driver,$config);
+            }
         }
         return self::$instance;
     }

@@ -33,9 +33,6 @@ class ResponseFactory
             case RequestFactory::V1_TYPE_LOGOUT:
                 $instance = new LogoutResponse($code, $message);
                 break;
-            case RequestFactory::V1_TYPE_CLOUD_BAN_CARD:
-                $instance = new CloudBanCardResponse($code, $message);
-                break;    
             default:
                 break;
         }

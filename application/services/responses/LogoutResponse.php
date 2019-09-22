@@ -6,7 +6,7 @@
  * Time: 3:19 PM
  */
 
-namespace AppServices\response;
+namespace AppServices\responses;
 
 class LogoutResponse extends BasicResponse
 {

@@ -2,7 +2,6 @@
 /**
  * 缓存操作工具类
  */
-
 namespace AppServices\utils;
 use AppServices\redis\RedisManagerFactory;
 use AppServices\redis\contracts\IRedisManager;
