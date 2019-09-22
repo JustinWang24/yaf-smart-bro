@@ -1,0 +1,31 @@
+<?php
+xhprof_enable();
+
+try{
+    define('APPLICATION_PATH', dirname(dirname(__FILE__)));
+    define('GLOBAL_URI_PREFIX', '/api/'); // 路由的统一前缀
+    require APPLICATION_PATH . '/vendor/autoload.php';
+    $application = new Yaf_Application( APPLICATION_PATH . "/conf/application.ini");
+    $application->bootstrap()->run();
+}catch (Exception $e){
+    var_dump($e->getMessage());
+}
+
+$xhprof_data = xhprof_disable();
+
+$XHPROF_ROOT = '/home/vagrant/xhprof';
+include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_lib.php";
+include_once $XHPROF_ROOT . "/xhprof_lib/utils/xhprof_runs.php";
+
+// save raw data for this profiler run using default
+// implementation of iXHProfRuns.
+$xhprof_runs = new XHProfRuns_Default();
+
+// save the run under a namespace "xhprof_foo"
+$run_id = $xhprof_runs->save_run($xhprof_data, "xhprof_foo");
+echo "---------------\n".
+    "Assuming you have set up the http based UI for \n".
+    "XHProf at some address, you can view run at \n".
+    "<a href='http://profiler.test/index.php?run=$run_id&source=xhprof_foo' target='_blank'>http://profiler.test/index.php?run=$run_id&source=xhprof_foo</a>\n".
+    "---------------\n";
+?>

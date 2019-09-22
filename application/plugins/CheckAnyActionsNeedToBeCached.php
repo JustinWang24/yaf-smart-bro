@@ -31,8 +31,10 @@ class CheckAnyActionsNeedToBeCachedPlugin extends Yaf_Plugin_Abstract
             );
         }
 
+        $expiredInSeconds = $this->needToCheckCacheFirst($requestUri);
+
         // 检查是否当前的 uri 是属于被缓存的
-        if($expiredInSeconds = $this->needToCheckCacheFirst($requestUri)){
+        if($expiredInSeconds > -1){
             // 确认是要被缓存的操作, 所以设置标志位到 request 中
             $request->setParam(CacheUtilityFactory::REQUEST_KEY_NEED_CACHED, true);
             // 将需要缓存的时间传递出去

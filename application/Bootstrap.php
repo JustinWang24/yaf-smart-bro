@@ -26,10 +26,9 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
 
 	public function _initPlugin(Yaf_Dispatcher $dispatcher) {
 		//注册一个插件
-//		$objSamplePlugin = new SamplePlugin();
-		$requestSanitizer = new RequestSanitizerPlugin();
-		$cacheActionInterceptor = new CheckAnyActionsNeedToBeCachedPlugin();
-
+		$requestSanitizer = new RequestSanitizerPlugin(); // 安全插件
+		$cacheActionInterceptor = new CheckAnyActionsNeedToBeCachedPlugin(); // 缓存插件
+//
 		$dispatcher->registerPlugin($requestSanitizer);
 		$dispatcher->registerPlugin($cacheActionInterceptor);
 	}
@@ -40,28 +39,20 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
         $apiRoutesPrefix = '/api/';
         try{
             // 登陆接口
-            $route1 = new Yaf_Route_Rewrite(
-                $apiRoutesPrefix.'user/login',
-                [
-                    'controller'=>'login'
-                ]
-            );
-            $router->addRoute('user_login',$route1);
+//            $route1 = new Yaf_Route_Rewrite(
+//                $apiRoutesPrefix.'user/login',
+//                [
+//                    'controller'=>'login'
+//                ]
+//            );
+//            $router->addRoute('user_login',$route1);
 
-            // 登出接口
-            $route2 = new Yaf_Route_Rewrite(
-                $apiRoutesPrefix.'user/logout',
-                [
-                    'controller'=>'logout'
-                ]
-            );
-            $router->addRoute('user_logout',$route2);
 
             // 测试缓存的接口
             $route3 = new Yaf_Route_Rewrite(
                 $apiRoutesPrefix.'cached-action',
                 [
-                    'controller'=>'index',
+                    'controller'=>'example',
                     'action'=>'cached',
                 ]
             );
@@ -72,11 +63,11 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
                 $route7 = new Yaf_Route_Rewrite(
                     $apiRoutesPrefix.'user/ab-test',
                     [
-                        'controller'=>'index',
+                        'controller'=>'example',
                         'action'=>'test'
                     ]
                 );
-                $router->addRoute('user_findUserPasswordInfo',$route7);
+                $router->addRoute('user_ab_test',$route7);
             }
         } catch (Exception $exception){
             // Todo: Log 到日志服务器

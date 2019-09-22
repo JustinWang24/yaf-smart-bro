@@ -14,9 +14,7 @@
     }
   ],
   "require": {
-    "illuminate/database": "^5.8",
-    "nesbot/carbon": "^2.23",
-    "guzzlehttp/guzzle": "~6.0"
+    "illuminate/database": "^5.8"
   },
   "autoload": {
     "psr-4": {

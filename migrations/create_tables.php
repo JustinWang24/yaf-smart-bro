@@ -16,10 +16,10 @@ $capsule = CapsuleManager::GetCapsule();
 if(!Capsule::schema()->hasTable('users')){
     Capsule::schema()->create('users', function (Blueprint $table){
         $table->bigIncrements('id');
-        $table->uuid('uuid')->index();
-        $table->string('email',50)->unique();
-        $table->string('password',60);
-        $table->string('name',60);
+        $table->uuid('uuid')->index()->comment('用户的 UUID');
+        $table->string('email',50)->unique()->comment('用户的电子邮件');
+        $table->string('password',60)->comment('用户的密码的 salt');
+        $table->string('name',60)->comment('用户的名字');
         $table->rememberToken();
         $table->timestamps();
         $table->softDeletes();
