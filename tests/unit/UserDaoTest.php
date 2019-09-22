@@ -10,6 +10,12 @@ require_once __DIR__.'/../BasicTest.php'; // 手工导入
 class UserDaoTest extends BasicTest
 {
     public function testItCanGetTrue(){
-        $this->assertTrue( 1 === 1);
+        try{
+            // 确保 uuid 是可以被调用的
+            $uuid = uuid();
+            $this->assertNotNull($uuid);
+        }catch (Exception $exception){
+            var_dump($exception->getMessage());
+        }
     }
 }
