@@ -2,6 +2,9 @@
 application.directory = APPLICATION_PATH  "/application"
 application.dispatcher.catchException = TRUE
 
+# 是否启用 redis 的二级缓存
+application.cache.redis.enable = FALSE
+
 application.owner.name.sms = "Your Company Name"
 application.current_version = "3.0"
 application.uris.login = GLOBAL_URI_PREFIX "user/login"

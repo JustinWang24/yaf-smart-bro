@@ -27,10 +27,13 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
 	public function _initPlugin(Yaf_Dispatcher $dispatcher) {
 		//注册一个插件
 		$requestSanitizer = new RequestSanitizerPlugin(); // 安全插件
-		$cacheActionInterceptor = new CheckAnyActionsNeedToBeCachedPlugin(); // 缓存插件
-//
-		$dispatcher->registerPlugin($requestSanitizer);
-		$dispatcher->registerPlugin($cacheActionInterceptor);
+        $dispatcher->registerPlugin($requestSanitizer);
+
+        // 是否启用缓存
+        if(yaf_config('application.cache.redis.enable')){
+            $cacheActionInterceptor = new CheckAnyActionsNeedToBeCachedPlugin(); // 缓存插件
+            $dispatcher->registerPlugin($cacheActionInterceptor);
+        }
 	}
 
 	public function _initRoute(Yaf_Dispatcher $dispatcher) {
