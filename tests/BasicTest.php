@@ -2,6 +2,7 @@
 /**
  * 测试用例的基础类
  */
+define('APPLICATION_PATH', str_replace('/tests','',__DIR__));
 require_once __DIR__.'/../vendor/autoload.php';
 
 use PHPUnit\Framework\TestCase;
