@@ -9,9 +9,13 @@ namespace AppServices\responses;
 
 abstract class BasicResponse
 {
+    const ERROR_CODE_OK                          = 1000; // 一切正常
+
     protected $data = null;
     protected $code;    // 状态码
     protected $message; // 消息
+
+    protected $errors = [];
 
     public function __construct($code, $message)
     {
@@ -21,7 +25,6 @@ abstract class BasicResponse
             'data'=>[]
         ];
         $this->setCode($code);
-        $this->setMessage($message);
     }
 
     /**
@@ -35,6 +38,7 @@ abstract class BasicResponse
     public function setCode($code){
         $this->code = $code;
         $this->data['code'] = $code;
+        $this->setMessage($this->errors[$code] ?? '');
     }
 
     public function setMessage($msg){

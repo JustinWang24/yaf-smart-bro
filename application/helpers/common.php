@@ -7,15 +7,21 @@ if(!function_exists('yaf_config')){
      * 在 Yaf 框架被加载之后可以获取配置项的方法
      *
      * @param $configFullName: 配置项的全名
+     * @param string $default: 配置项的默认值
      * @return mixed
      */
-    function yaf_config($configFullName){
+    function yaf_config($configFullName, $default = null){
         $v = Yaf_Registry::get('config');
         $arr = explode('.', $configFullName);
         foreach ($arr as $section) {
-            $v = $v->get($section);
+            if($v){
+                $v = $v->get($section);
+            }
+            else{
+                break;
+            }
         }
-        return empty($v) ? null : $v;
+        return empty($v) ? $default : $v;
     }
 }
 

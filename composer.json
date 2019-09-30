@@ -4,6 +4,7 @@
   "type": "project",
   "require-dev": {
     "fzaninotto/faker": "^1.8",
+    "guzzlehttp/guzzle": "~6.0",
     "phpunit/phpunit": "^7"
   },
   "license": "MIT",

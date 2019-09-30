@@ -19,7 +19,7 @@ class ResponseFactory
      * @param string $message
      * @return BasicResponse
      */
-    public static function GetInstance($requestType, $code = null, $message = ''){
+    public static function GetInstance($requestType, $code = BasicResponse::ERROR_CODE_OK, $message = ''){
 
         /**
          * @var BasicResponse $instance

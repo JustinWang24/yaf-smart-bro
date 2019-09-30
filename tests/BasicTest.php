@@ -95,4 +95,22 @@ class BasicTest extends TestCase
         }catch (Exception $exception){
         }
     }
+
+    /**
+     * 判断两个值是绝对相等的
+     * @param $expect
+     * @param $actual
+     * @param string $msg
+     */
+    protected function assertAbsoluteEquals($expect, $actual, $msg = '两个值不是绝对的相等'){
+        $this->assertTrue($expect === $actual, $msg);
+    }
+
+    /**
+     * @param \Psr\Http\Message\ResponseInterface $response
+     * @return array
+     */
+    protected function _getJson($response){
+        return json_decode($response->getBody()->getContents(), true);
+    }
 }
