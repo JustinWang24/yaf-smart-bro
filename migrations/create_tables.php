@@ -3,7 +3,6 @@
  * 数据库的迁移和升级
  * User: Justin Wang
  */
-require __DIR__.'/../vendor/autoload.php';
 require_once 'get_db_connection.php';
 
 use Illuminate\Database\Capsule\Manager as Capsule;
