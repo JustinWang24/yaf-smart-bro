@@ -1,6 +1,6 @@
 # 简述
 
-- 项目地址 https://www.webmelbourne.com
+- 项目地址 https://www.webmelbourne.com/page/blog/php-yaf-mvc-framework
 - 本模板适用于快速开发一个可用的中小型的 API 服务. 如果对性能非常依赖的项目, 后期考虑直接使用 PDO 来替换 `Laravel/Database`
 - 强烈建议在开发的时候, 注意解耦, 并尽可能的面向接口/抽象类进行开发, 特别是 `DAO 数据库操作层`
 - 本模板默认引入的几个 PHP 依赖包都不是必须的, 可酌情进行删减
