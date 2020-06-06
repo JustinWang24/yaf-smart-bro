@@ -1,4 +1,10 @@
 /vendor
+/node_modules
+/public/storage
+/public/css
+/public/js
+/public/fonts
+/public/image
 .idea
 .vscode
 conf/application.ini
