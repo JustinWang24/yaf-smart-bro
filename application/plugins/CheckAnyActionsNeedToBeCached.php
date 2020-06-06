@@ -6,7 +6,7 @@ use AppServices\utils\CacheUtilityFactory;
 
 class CheckAnyActionsNeedToBeCachedPlugin extends Yaf_Plugin_Abstract
 {
-    private $routesShallBeCached = [
+    private array $routesShallBeCached = [
         '/api/cached-action' => 60,    // target_uri 需要被缓存, 过期时间是 60 秒
     ];
 

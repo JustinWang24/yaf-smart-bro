@@ -1,6 +1,7 @@
 [common]
 application.directory = APPLICATION_PATH  "/application"
 application.dispatcher.catchException = TRUE
+application.view.enable = FALSE
 
 # 是否启用 redis 的二级缓存
 application.cache.redis.enable = FALSE
