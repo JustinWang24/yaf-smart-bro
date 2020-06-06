@@ -16,6 +16,7 @@
   ],
   "require": {
     "php": "^7.4",
+    "doctrine/dbal": "^2.10",
     "illuminate/database": "^7.14.0"
   },
   "autoload": {

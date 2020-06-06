@@ -16,7 +16,7 @@ class ExampleController extends Yaf_Controller_Abstract{
      */
     public function testAction(){
 
-        foreach (range(1, 100) as $item) {
+        foreach (range(1, 20) as $item) {
             User::find($item);
         }
         echo 'ab test action';
