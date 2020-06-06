@@ -17,8 +17,10 @@ if(!Capsule::schema()->hasTable('users')){
         $table->bigIncrements('id');
         $table->uuid('uuid')->index()->comment('用户的 UUID');
         $table->string('email',50)->unique()->comment('用户的电子邮件');
+        $table->string('phone',20)->comment('用户的电话号码');
         $table->string('password',60)->comment('用户的密码的 salt');
         $table->string('name',60)->comment('用户的名字');
+        $table->string('id_number',60)->nullable()->comment('用户的身份证');
         $table->rememberToken();
         $table->timestamps();
         $table->softDeletes();

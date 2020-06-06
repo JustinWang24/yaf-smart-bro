@@ -8,6 +8,13 @@
 ## 如何添加新的依赖
 php73 composer.phar require company/lib-name
 
+## 安装PHP扩展
+
+- 注意使用pecl安装的时候, 注意要通过 `pecl channel-update pecl.php.net` 命令更新pecl的channel信息
+- 必须安装: yaf (我推荐通过直接编译php的源码, yaf的源码来进行安装, 特别是生产环境. 在测试环境中, 可以通过 `pecl install yaf` 命令也没问题)
+- 选择安装: uuid (推荐), 如果要生成uuid字符串, 那么最好通过扩展的方式. 源码安装uuid扩展或者通过 `pecl install uuid` 进行安装. 注意该扩展需要操作系统已经安装了 `libuuid` 库
+- 选择安装: seaslog (推荐, 日志有多重要就不多说了), 最好通过源码安装 seaslog 扩展或者通过 `pecl install seaslog` 进行安装.
+
 ## 使用数据库 ORM: Eloquent
 https://github.com/illuminate/database
 
@@ -23,8 +30,11 @@ php73 ./vendor/bin/phpunit --filter=your_test_case
 
 ## 数据库的 migration
 ### 创建数据库表
+
+在创建数据库表之前, 请先拷贝 `migrations/get_db_connection.example.php` 文件并命名一个新文件 `migrations/get_db_connection.php`
 - 本地操作 `php migrations/create_tables.php dev`
 - Production 环境 `php migrations/create_tables.php`
+
 ### 创建Mock 数据
 - 仅限本地或测试环境操作 `php migrations/database_seeder.php dev`
 

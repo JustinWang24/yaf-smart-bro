@@ -39,9 +39,26 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
 	public function _initRoute(Yaf_Dispatcher $dispatcher) {
 		//在这里注册自己的路由协议,使用 Rewrite 路由
         $router = $dispatcher->getRouter();
-        $apiRoutesPrefix = '/api/';
+
+
         try{
-            // 登陆接口
+            // 页面的路由
+            $myRoutes = $this->myRoutes();
+            foreach ($myRoutes as $myRoute) {
+                $router->addRoute(
+                    $myRoute['name'],
+                    new Yaf_Route_Rewrite(
+                        $myRoute['uri'],
+                        [
+                            'controller'=>$myRoute['c_a']['controller']??'index',
+                            'action'    =>$myRoute['c_a']['action']??'index',
+                        ]
+                    )
+                );
+            }
+
+            // API 的路由: 登陆接口
+            $apiRoutesPrefix = '/api/';
 //            $route1 = new Yaf_Route_Rewrite(
 //                $apiRoutesPrefix.'user/login',
 //                [
@@ -50,27 +67,30 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
 //            );
 //            $router->addRoute('user_login',$route1);
 
-
             // 测试缓存的接口
-            $route3 = new Yaf_Route_Rewrite(
-                $apiRoutesPrefix.'cached-action',
-                [
-                    'controller'=>'example',
-                    'action'=>'cached',
-                ]
+            $router->addRoute(
+                'cached-action',
+                new Yaf_Route_Rewrite(
+                    $apiRoutesPrefix.'cached-action',
+                    [
+                        'controller'=>'example',
+                        'action'=>'cached',
+                    ]
+                )
             );
-            $router->addRoute('cached-action',$route3);
 
             // AB 测试的一个路由
             if(YAF_ENVIRON === 'dev'){
-                $route7 = new Yaf_Route_Rewrite(
-                    $apiRoutesPrefix.'user/ab-test',
-                    [
-                        'controller'=>'example',
-                        'action'=>'test'
-                    ]
+                $router->addRoute(
+                    'user_ab_test',
+                    new Yaf_Route_Rewrite(
+                        $apiRoutesPrefix.'user/ab-test',
+                        [
+                            'controller'=>'example',
+                            'action'=>'test'
+                        ]
+                    )
                 );
-                $router->addRoute('user_ab_test',$route7);
             }
         } catch (Exception $exception){
             // Todo: Log 到日志服务器
@@ -78,7 +98,42 @@ class Bootstrap extends Yaf_Bootstrap_Abstract {
 	}
 	
 	public function _initView(Yaf_Dispatcher $dispatcher) {
-		//在这里注册自己的view控制器，例如smarty,firekylin
-        $dispatcher->disableView();
+	    if(strpos($dispatcher->getRequest()->getRequestUri(),'/api/') === 0){
+	        // 这是API路由, 不需要加载 view, 默认都是返回 json 格式字符串
+            $dispatcher->disableView();
+        } else {
+	        // 非API
+            if(!yaf_config('application.view.enable')){
+                $dispatcher->disableView();
+            }
+            //在这里注册自己的view控制器，例如smarty,firekylin
+        }
 	}
+
+    /**
+     * 定义自己的路由. 注意，不需要定义默认首页的的路由, 采用Yaf自定义的Index控制器的index方法即可
+     * @return array[]
+     */
+	private function myRoutes(){
+	    return [
+            [
+                'uri'=>'/about',  // 路由的方法
+                'c_a'=>[
+                    'controller'=>'index',
+                    'action'=>'about',
+                ],   // 映射到那个控制器与方法
+                'name'=>'page-about',  // 路由的名字
+            ]
+        ];
+    }
+
+    private function myApiRoutes(){
+        return [
+            [
+                'uri'=>'/',  // 路由的方法
+                'c_a'=>[],   // 映射到那个控制器与方法
+                'name'=>'',  // 路由的名字
+            ]
+        ];
+    }
 }
